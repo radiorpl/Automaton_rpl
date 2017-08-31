@@ -61,10 +61,14 @@ void Atm_encoder::action( int id ) {
       return;
     case ENT_UP:
       onup.push( state(), 1 );
+	  onup2.push( state(), 1 );
+	  onup3.push( state(), 1 );
 	  m_debounce = 0;
       return;
     case ENT_DOWN:
       ondown.push( state(), 0 );
+	  ondown2.push( state(), 0 );
+	  ondown3.push( state(), 0 );
 	  m_debounce = 0;
       return;
   }
@@ -123,6 +127,42 @@ Atm_encoder& Atm_encoder::onChange( bool status, atm_cb_push_t callback, int idx
     onup.set( callback, idx );
   } else {
     ondown.set( callback, idx );
+  }
+  return *this;
+}
+
+Atm_encoder& Atm_encoder::onChange2( bool status, Machine& machine, int event /* = 0 */ ) {
+  if ( status ) {
+    onup2.set( &machine, event );
+  } else {
+    ondown2.set( &machine, event );
+  }
+  return *this;
+}
+
+Atm_encoder& Atm_encoder::onChange2( bool status, atm_cb_push_t callback, int idx /* = 0 */ ) {
+  if ( status ) {
+    onup2.set( callback, idx );
+  } else {
+    ondown2.set( callback, idx );
+  }
+  return *this;
+}
+
+Atm_encoder& Atm_encoder::onChange3( bool status, Machine& machine, int event /* = 0 */ ) {
+  if ( status ) {
+    onup3.set( &machine, event );
+  } else {
+    ondown3.set( &machine, event );
+  }
+  return *this;
+}
+
+Atm_encoder& Atm_encoder::onChange3( bool status, atm_cb_push_t callback, int idx /* = 0 */ ) {
+  if ( status ) {
+    onup3.set( callback, idx );
+  } else {
+    ondown3.set( callback, idx );
   }
   return *this;
 }

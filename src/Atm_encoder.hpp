@@ -18,6 +18,10 @@ class Atm_encoder : public Machine {
   Atm_encoder& onChange( atm_cb_push_t callback, int idx = 0 );
   Atm_encoder& onChange( bool status, Machine& machine, int event = 0 );
   Atm_encoder& onChange( bool status, atm_cb_push_t callback, int idx = 0 );
+  Atm_encoder& onChange2( bool status, Machine& machine, int event = 0 );
+  Atm_encoder& onChange2( bool status, atm_cb_push_t callback, int idx = 0 );
+  Atm_encoder& onChange3( bool status, Machine& machine, int event = 0 );
+  Atm_encoder& onChange3( bool status, atm_cb_push_t callback, int idx = 0 );
   int state( void );
   Atm_encoder& range( int min, int max, bool wrap = false );
   Atm_encoder& set( int value );
@@ -34,6 +38,8 @@ class Atm_encoder : public Machine {
   int value, min, max;
   bool wrap, range_invert;
   atm_connector onup, ondown;
+  atm_connector onup2, ondown2;
+  atm_connector onup3, ondown3;
   //debounce timer
   elapsedMillis m_debounce;
   //debounce time
